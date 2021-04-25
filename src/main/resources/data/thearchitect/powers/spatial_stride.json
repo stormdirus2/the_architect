@@ -52,7 +52,6 @@
           "effect": "minecraft:levitation",
           "duration": 2,
           "amplifier": -1,
-          "is_ambient": true,
           "show_particles": false,
           "show_icon": false
       }
@@ -103,5 +102,5 @@
     }
   },
   "name": "Spatial Stride",
-  "description": "You have the ability to hover in the air."
+  "description": "Using the primary ability key while on the ground allows the user to begin hovering. This can be deactivated at any time and prevents the player from ascending and descending from virtually all sources."
 }
