@@ -1,0 +1,107 @@
+{
+  "type": "origins:multiple",
+  "onoff": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "should_render": false
+    }
+  },
+
+  "toggle": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:and",
+        "conditions": [
+          {
+            "type": "origins:resource",
+            "resource": "thearchitect:spatial_stride_onoff",
+            "comparison": "==",
+            "compare_to": 0
+          },
+          {
+            "type": "origins:on_block"
+          }
+        ]
+      },
+      "if_action": {
+        "type": "origins:change_resource",
+        "resource": "thearchitect:spatial_stride_onoff",
+        "change": 1
+      },
+      "else_action": {
+        "type": "origins:change_resource",
+        "resource": "thearchitect:spatial_stride_onoff",
+        "change": -1
+      }
+    },
+    "cooldown": 0,
+    "hud_render": {
+      "should_render": false
+    }
+  },
+
+  "apply": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:apply_effect",
+      "effect": {
+          "effect": "minecraft:levitation",
+          "duration": 2,
+          "amplifier": -1,
+          "is_ambient": true,
+          "show_particles": false,
+          "show_icon": false
+      }
+    },
+    "interval": 1,
+    "condition": {
+      "type": "origins:or",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "thearchitect:spatial_stride_onoff",
+          "comparison": "==",
+          "compare_to": 1
+        },
+        {
+          "type": "origins:equipped_item",
+          "equipment_slot": "mainhand",
+          "item_condition": {
+            "type": "thearchitect:item",
+            "item": "thearchitect:architects_focus"
+          }
+        }
+      ]
+    }
+  },
+  "particles": {
+    "type": "origins:particle",
+    "particle": "minecraft:composter",
+    "frequency": 40,
+    "condition": {
+      "type": "origins:or",
+      "conditions": [
+        {
+          "type": "origins:resource",
+          "resource": "thearchitect:spatial_stride_onoff",
+          "comparison": "==",
+          "compare_to": 1
+        },
+        {
+          "type": "origins:equipped_item",
+          "equipment_slot": "mainhand",
+          "item_condition": {
+            "type": "thearchitect:item",
+            "item": "thearchitect:architects_focus"
+          }
+        }
+      ]
+    }
+  },
+  "name": "Spatial Stride",
+  "description": "You have the ability to hover in the air."
+}

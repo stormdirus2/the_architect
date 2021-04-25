@@ -1,0 +1,9 @@
+{
+  "type": "origins:invulnerability",
+  "damage_condition": {
+    "type": "origins:name",
+    "name": "wither"
+  },
+  "name": "Unwithering",
+  "description": "You cannot be subject to withering."
+}

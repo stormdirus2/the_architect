@@ -1,0 +1,25 @@
+{
+  "type": "origins:recipe",
+  "recipe": {
+    "id": "thearchitect:architect/architects_focus",
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+      " # ",
+      "#0#",
+      " # "
+    ],
+    "key": {
+      "#": {
+        "item": "polished_blackstone"
+      },
+      "0": {
+        "item": "emerald_block"
+      }
+    },
+    "result": {
+      "item": "thearchitect:architects_focus"
+    }
+  },
+  "name": "Architect's Focus",
+  "description": "An item crafted by placing 4 polished blackstone around a block of emerald. Using this item allows teleportation for the cost of 5 levels."
+}

@@ -1,0 +1,34 @@
+{
+  "type": "origins:multiple",
+
+  "give": {
+    "type": "origins:self_action_when_hit",
+    "entity_action": {
+      "type": "origins:add_xp",
+      "levels": -5
+    },
+    "damage_condition": {
+      "type": "origins:amount",
+      "comparison": ">=",
+      "compare_to": 5
+    },
+    "cooldown": 0
+  },
+
+  "take": {
+    "type": "origins:self_action_on_kill",
+    "entity_action": {
+      "type": "origins:add_xp",
+      "levels": 1
+    },
+    "target_condition": {
+      "type": "thearchitect:max_health",
+      "comparison": ">=",
+      "compare_to": 15
+    },
+    "cooldown": 0
+  },
+
+  "name": "Peritia Transfer",
+  "description": "Killing a mob with significant health increases your level by one. However, taking significant damage decreases it by 5."
+}

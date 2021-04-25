@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.fenrir.thearchitect.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "Nonflammable"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

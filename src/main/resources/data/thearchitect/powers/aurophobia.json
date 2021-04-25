@@ -1,0 +1,24 @@
+{
+  "type": "origins:multiple",
+  "take_damage": {
+    "type": "origins:damage_over_time",
+    "interval": 5,
+    "damage": 2,
+    "damage_source": {
+      "name": "onFire",
+      "fire": true,
+      "bypasses_armor": true
+    },
+    "condition": {
+      "type": "thearchitect:touching_gold"
+    }
+  },
+  "shake": {
+    "type": "origins:shaking",
+    "condition": {
+      "type": "thearchitect:touching_gold"
+    }
+  },
+  "name": "Aurophobia",
+  "description": "Your skin burns at the touch of gold."
+}
