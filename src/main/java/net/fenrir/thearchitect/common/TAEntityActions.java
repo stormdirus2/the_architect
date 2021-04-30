@@ -11,6 +11,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ShulkerBulletEntity;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
@@ -25,36 +26,6 @@ public class TAEntityActions {
     }
 
     public static void initialization() {
-        register(new ActionFactory<>(new Identifier(TheArchitect.MODID, "increase_resistance"), new SerializableData(),
-                (data, entity) -> {
-                    if (entity instanceof LivingEntity) {
-                        LivingEntity living = (LivingEntity) entity;
-                        StatusEffectInstance resistance = living.getStatusEffect(StatusEffects.RESISTANCE);
-                        if (resistance != null) {
-                            int newDuration = resistance.getDuration() + 60 * 20;
-                            if (resistance.getAmplifier() < 2 && newDuration >= 5 * 60 * 20) {
-                                resistance = new StatusEffectInstance(
-                                        StatusEffects.RESISTANCE,
-                                        60 * 20,
-                                        resistance.getAmplifier() + 1
-                                );
-                            } else {
-                                resistance = new StatusEffectInstance(
-                                        StatusEffects.RESISTANCE,
-                                        newDuration,
-                                        resistance.getAmplifier()
-                                );
-                            }
-                        } else {
-                            resistance = new StatusEffectInstance(
-                                    StatusEffects.RESISTANCE,
-                                    60 * 20,
-                                    0
-                            );
-                        }
-                        living.addStatusEffect(resistance);
-                    }
-                }));
         register(new ActionFactory<>(new Identifier(TheArchitect.MODID, "use_curse"), new SerializableData().add("range", SerializableDataType.INT).add("cost", SerializableDataType.INT, 3),
                 (data, entity) -> {
                     PlayerEntity playerEntity = (PlayerEntity) entity;
@@ -71,12 +42,12 @@ public class TAEntityActions {
                     Vec3d startPoint = playerEntity.getCameraPosVec(1);
                     Vec3d lookVec = playerEntity.getRotationVec(1);
                     Vec3d endPoint = startPoint.add(lookVec.x * range, lookVec.y * range, lookVec.z * range);
-                    EntityHitResult result = RayHelper.raycast(playerEntity, startPoint, endPoint, new Box(playerEntity.getBlockPos()).expand(range), Entity::isLiving, range * range);
+                    EntityHitResult result = RayHelper.raycast(playerEntity, startPoint, endPoint, new Box(playerEntity.getBlockPos()).expand(range), EntityPredicates.VALID_ENTITY, range * range);
                     Entity victim = null;
                     if (result != null) {
                         victim = result.getEntity();
                     }
-                    if (victim != null) {
+                    if (victim instanceof LivingEntity) {
                         int targetCurses = playerInterface.getCursesTarget(victim);
                         if (targetCurses < 6) {
                             if (levels < cost * targetCurses) {

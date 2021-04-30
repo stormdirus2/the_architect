@@ -61,15 +61,6 @@ public abstract class ArchitectsCurse extends Entity implements ArchitectsCurseA
     protected abstract void method_7486(@Nullable Direction.Axis axis);
 
     @Inject(
-            method = "<init>(Lnet/minecraft/entity/EntityType;Lnet/minecraft/world/World;)V",
-            at = @At("TAIL")
-    )
-    public void shulkerHell(EntityType<? extends ShulkerBulletEntity> entityType, World world, CallbackInfo ci) {
-        this.setCustomName(Text.of("Architect's Curse"));
-        this.setCustomNameVisible(false);
-    }
-
-    @Inject(
             method = "onBlockHit",
             at = @At("HEAD"),
             cancellable = true
