@@ -8,7 +8,6 @@
       "should_render": false
     }
   },
-
   "toggle": {
     "type": "origins:active_self",
     "entity_action": {
@@ -43,17 +42,16 @@
       "should_render": false
     }
   },
-
   "apply": {
     "type": "origins:action_over_time",
     "entity_action": {
       "type": "origins:apply_effect",
       "effect": {
-          "effect": "minecraft:levitation",
-          "duration": 2,
-          "amplifier": -1,
-          "show_particles": false,
-          "show_icon": false
+        "effect": "minecraft:levitation",
+        "duration": 2,
+        "amplifier": -1,
+        "show_particles": false,
+        "show_icon": false
       }
     },
     "interval": 1,
@@ -102,5 +100,5 @@
     }
   },
   "name": "Spatial Stride",
-  "description": "Using the primary ability key while on the ground allows the user to begin hovering. This can be deactivated at any time and prevents the player from ascending and descending from virtually all sources."
+  "description": "Primary key. Only can be first activated on the ground, but can be deactivated whenever. User hovers at the Y-position they activated it at."
 }

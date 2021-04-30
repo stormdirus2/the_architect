@@ -1,6 +1,5 @@
 {
   "type": "origins:multiple",
-
   "give": {
     "type": "origins:self_action_when_hit",
     "entity_action": {
@@ -14,7 +13,6 @@
     },
     "cooldown": 0
   },
-
   "take": {
     "type": "origins:self_action_on_kill",
     "entity_action": {
@@ -28,7 +26,6 @@
     },
     "cooldown": 0
   },
-
   "name": "Peritia Transfer",
-  "description": "Killing a mob with significant health increases your level by one. However, taking significant damage decreases it by 5."
+  "description": "Killing a mob with 15 or more max health gives a level. Taking 5 or more damage subtracts 5 levels."
 }

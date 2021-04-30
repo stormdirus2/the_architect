@@ -1,0 +1,16 @@
+{
+  "type": "origins:active_self",
+  "entity_action": {
+    "type": "thearchitect:use_curse",
+    "range": 30
+  },
+  "cooldown": 0,
+  "hud_render": {
+    "should_render": false
+  },
+  "key": {
+    "key": "key.origins.secondary_active"
+  },
+  "name": "Architect's Curse",
+  "description": "Secondary key. Activates on the target you look at. Applies weakness and minor damage. Maximum of 6 per target. Having one is free, subsequent casts cost at least 3 levels. Cost scales with the target's amount. "
+}

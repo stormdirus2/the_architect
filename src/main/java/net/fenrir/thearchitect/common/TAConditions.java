@@ -21,7 +21,7 @@ public class TAConditions {
     public static final ConditionFactory<LivingEntity> MAX_HEALTH = create(new ConditionFactory<>(new Identifier(TheArchitect.MODID, "max_health"), new SerializableData()
             .add("comparison", SerializableDataType.COMPARISON)
             .add("compare_to", SerializableDataType.FLOAT),
-            (data, entity) -> ((Comparison)data.get("comparison")).compare(entity.getMaxHealth(), data.getFloat("compare_to"))));
+            (data, entity) -> ((Comparison) data.get("comparison")).compare(entity.getMaxHealth(), data.getFloat("compare_to"))));
 
     private static ConditionFactory<LivingEntity> create(ConditionFactory<LivingEntity> factory) {
         CONDITIONS.put(factory, factory.getSerializerId());

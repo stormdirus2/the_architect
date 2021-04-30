@@ -4,9 +4,16 @@
   "package": "net.fenrir.thearchitect.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "Nonflammable"
+    "ArchitectsCurse",
+    "LivingEntityAccessor",
+    "Nonflammable",
+    "Player",
+    "PreventArmorBonus",
+    "UseItem"
   ],
-  "client": [],
+  "client": [
+    "ArchitectsCurseRender"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

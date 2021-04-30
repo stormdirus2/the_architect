@@ -37,7 +37,6 @@ public class RayHelper {
     }
 
     /**
-     *
      * @param world         the world
      * @param source        the entity to be used for determining block bounding boxes
      * @param start         the start point

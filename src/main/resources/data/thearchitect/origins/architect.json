@@ -1,9 +1,11 @@
 {
   "name": "Architect",
-  "description": "A distant cousin of the now-extinct Builders.",
+  "description": "A distant cousin of the now-extinct Builders. Your original realm now destroyed, you become stranded in this one. Due to your unnatural composition and affinity for spatial magic you gain several benifits and weaknesses.",
   "powers": [
     "thearchitect:aurophobia",
     "thearchitect:spatial_stride",
+    "thearchitect:unnatural_composition",
+    "thearchitect:architects_curse",
     "thearchitect:architects_focus",
     "thearchitect:peritia_transfer",
     "thearchitect:peritia_synthesis",

@@ -8,7 +8,6 @@
     "Fenrir"
   ],
   "contact": {
-
   },
   "license": "MIT",
   "icon": "icon.png",
@@ -16,6 +15,9 @@
   "entrypoints": {
     "main": [
       "net.fenrir.thearchitect.TheArchitect"
+    ],
+    "client": [
+      "net.fenrir.thearchitect.TheClientArchitect"
     ]
   },
   "mixins": [
