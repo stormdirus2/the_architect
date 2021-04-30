@@ -39,5 +39,5 @@
     }
   },
   "name": "Architect's Focus",
-  "description": "Created via placing 4 polished blackstone around a emerald block. Stores positions to teleport to. Reset via crafting it into itself."
+  "description": "Created via placing 4 polished blackstone around a emerald block. Stores positions to teleport to, subsequent uses teleport to the stored position. Reset via crafting it into itself."
 }
