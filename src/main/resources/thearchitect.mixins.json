@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ArchitectsCurse",
-    "LivingEntityAccessor",
     "Nonflammable",
     "Player",
     "PreventArmorBonus",
