@@ -12,17 +12,22 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ShulkerBulletEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.Registry;
+import org.jetbrains.annotations.Nullable;
 
 public class TAEntityActions {
 
     private static void register(ActionFactory<Entity> actionFactory) {
         Registry.register(ModRegistries.ENTITY_ACTION, actionFactory.getSerializerId(), actionFactory);
+    }
+    private static Text textOf(@Nullable String string) {
+        return (string != null ? new LiteralText(string) : LiteralText.EMPTY);
     }
 
     public static void initialization() {
@@ -54,7 +59,7 @@ public class TAEntityActions {
                                 return;
                             }
                             ShulkerBulletEntity shulk = new ShulkerBulletEntity(playerEntity.world, playerEntity, victim, playerEntity.getMovementDirection().getAxis());
-                            shulk.setCustomName(Text.of("Architect's Curse"));
+                            shulk.setCustomName(textOf("Architect's Curse"));
                             shulk.setCustomNameVisible(false);
                             shulk.setPos(shulk.getX(), shulk.getY() + 2, shulk.getZ());
                             boolean success = playerEntity.world.spawnEntity(shulk);

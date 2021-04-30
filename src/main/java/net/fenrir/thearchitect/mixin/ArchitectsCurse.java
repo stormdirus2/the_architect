@@ -14,6 +14,7 @@ import net.minecraft.entity.projectile.ShulkerBulletEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.Text;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -59,6 +60,10 @@ public abstract class ArchitectsCurse extends Entity implements ArchitectsCurseA
 
     @Shadow
     protected abstract void method_7486(@Nullable Direction.Axis axis);
+
+    private static Text textOf(@Nullable String string) {
+        return (string != null ? new LiteralText(string) : LiteralText.EMPTY);
+    }
 
     @Inject(
             method = "onBlockHit",
