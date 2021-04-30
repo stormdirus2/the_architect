@@ -1,5 +1,5 @@
 {
   "type": "origins:simple",
   "name": "Nonflammable",
-  "description": "You cannot be set on fire. You can still take damage."
+  "description": "You cannot be set on fire. You can still take fire damage."
 }
