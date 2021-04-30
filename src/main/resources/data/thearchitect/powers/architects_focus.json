@@ -3,7 +3,7 @@
   "create": {
     "type": "origins:recipe",
     "recipe": {
-      "id": "thearchitect:architect/architects_focus",
+      "id": "thearchitect:architect/architects_focus_create",
       "type": "minecraft:crafting_shaped",
       "pattern": [
         " # ",
@@ -26,6 +26,7 @@
   "reset": {
     "type": "origins:recipe",
     "recipe": {
+      "id": "thearchitect:architect/architects_focus_reset",
       "type": "minecraft:crafting_shapeless",
       "ingredients": [
         {
