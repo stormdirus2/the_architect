@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -48,33 +49,38 @@ public class ArchitectsFocus extends Item {
             if (TAPowers.ARCHITECTS_FOCUS.isActive(playerEntity)) {
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
                 if (i >= 22 && !world.isClient) {
-                    playerEntity.getItemCooldownManager().set(stack.getItem(), 200);
                     CompoundTag compoundTag = stack.getOrCreateSubTag(TheArchitect.MODID);
                     Optional<RegistryKey<World>> world2 = World.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("warp_world")).result();
                     if (compoundTag.contains("warp_pos") && world2.isPresent()) {
                         BlockPos pos = NbtHelper.toBlockPos(compoundTag.getCompound("warp_pos"));
-                        ServerWorld realWorld2 = world.getServer().getWorld(world2.get());
-                        int range = 30;
-                        Vec3d startPoint = user.getCameraPosVec(1);
-                        Vec3d lookVec = user.getRotationVec(1);
-                        Vec3d endPoint = startPoint.add(lookVec.x * range, lookVec.y * range, lookVec.z * range);
-                        EntityHitResult result = RayHelper.raycast(user, startPoint, endPoint, new Box(user.getBlockPos()).expand(range), Entity::isLiving, range * range);
-                        Entity comeWith = null;
-                        if (result != null) {
-                            comeWith = result.getEntity();
-                        }
-                        if (realWorld2 != world) {
-                            if (comeWith != null) {
-                                comeWith.moveToWorld(realWorld2);
+                        MinecraftServer server = world.getServer();
+                        if (server != null) {
+                            ServerWorld realWorld2 = server.getWorld(world2.get());
+                            if (realWorld2 != null) {
+                                int range = 30;
+                                Vec3d startPoint = user.getCameraPosVec(1);
+                                Vec3d lookVec = user.getRotationVec(1);
+                                Vec3d endPoint = startPoint.add(lookVec.x * range, lookVec.y * range, lookVec.z * range);
+                                EntityHitResult result = RayHelper.raycast(user, startPoint, endPoint, new Box(user.getBlockPos()).expand(range), Entity::isLiving, range * range);
+                                Entity comeWith = null;
+                                if (result != null) {
+                                    comeWith = result.getEntity();
+                                }
+                                if (realWorld2 != world) {
+                                    if (comeWith != null) {
+                                        comeWith.moveToWorld(realWorld2);
+                                    }
+                                    playerEntity.moveToWorld(realWorld2);
+                                }
+                                if (comeWith != null) {
+                                    comeWith.teleport(pos.getX(), pos.getY(), pos.getZ());
+                                }
+                                playerEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+                                world.playSound(null, user.prevX, user.prevY, user.prevZ, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
+                                realWorld2.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
+                                playerEntity.getItemCooldownManager().set(stack.getItem(), 200);
                             }
-                            playerEntity.moveToWorld(realWorld2);
                         }
-                        if (comeWith != null) {
-                            comeWith.teleport(pos.getX(), pos.getY(), pos.getZ());
-                        }
-                        playerEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
-                        world.playSound(null, user.prevX, user.prevY, user.prevZ, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
-                        realWorld2.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
                     } else {
                         compoundTag.put("warp_pos", NbtHelper.fromBlockPos(playerEntity.getBlockPos()));
                         DataResult<Tag> dataResult = World.CODEC.encodeStart(NbtOps.INSTANCE, world.getRegistryKey());
