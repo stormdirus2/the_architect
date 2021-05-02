@@ -11,6 +11,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtHelper;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -61,9 +62,9 @@ public class ArchitectsFocus extends Item {
                                 Vec3d startPoint = user.getCameraPosVec(1);
                                 Vec3d lookVec = user.getRotationVec(1);
                                 Vec3d endPoint = startPoint.add(lookVec.x * range, lookVec.y * range, lookVec.z * range);
-                                EntityHitResult result = RayHelper.raycast(user, startPoint, endPoint, new Box(user.getBlockPos()).expand(range), Entity::isLiving, range * range);
+                                EntityHitResult result = RayHelper.raycast(user, startPoint, endPoint, new Box(user.getBlockPos()).expand(range), EntityPredicates.VALID_ENTITY, range * range);
                                 Entity comeWith = null;
-                                if (result != null) {
+                                if (result != null && result.getEntity() instanceof LivingEntity) {
                                     comeWith = result.getEntity();
                                 }
                                 if (realWorld2 != world) {
