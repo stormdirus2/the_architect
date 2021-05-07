@@ -55,15 +55,15 @@ public abstract class ArchitectsCurse extends Entity implements ArchitectsCurseA
         super(type, world);
     }
 
+    private static Text textOf(@Nullable String string) {
+        return (string != null ? new LiteralText(string) : LiteralText.EMPTY);
+    }
+
     @Shadow
     protected abstract void setDirection(Direction direction);
 
     @Shadow
     protected abstract void method_7486(@Nullable Direction.Axis axis);
-
-    private static Text textOf(@Nullable String string) {
-        return (string != null ? new LiteralText(string) : LiteralText.EMPTY);
-    }
 
     @Inject(
             method = "onBlockHit",

@@ -7,8 +7,6 @@ import io.github.apace100.origins.util.SerializableDataType;
 import net.fenrir.thearchitect.TheArchitect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ShulkerBulletEntity;
 import net.minecraft.predicate.entity.EntityPredicates;
@@ -26,6 +24,7 @@ public class TAEntityActions {
     private static void register(ActionFactory<Entity> actionFactory) {
         Registry.register(ModRegistries.ENTITY_ACTION, actionFactory.getSerializerId(), actionFactory);
     }
+
     private static Text textOf(@Nullable String string) {
         return (string != null ? new LiteralText(string) : LiteralText.EMPTY);
     }
