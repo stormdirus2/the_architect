@@ -1,10 +1,10 @@
 package net.fenrir.thearchitect.mixin;
 
+import net.fenrir.thearchitect.TheArchitect;
 import net.fenrir.thearchitect.common.TAPowers;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tag.ItemTags;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -26,7 +26,7 @@ public class UseItem {
         if (TAPowers.AUROPHOBIA.isActive(user)) {
             ItemStack stack = user.getStackInHand(hand);
             if (stack != null) {
-                if (ItemTags.PIGLIN_LOVED.contains(stack.getItem())) {
+                if (TheArchitect.GOLD.contains(stack.getItem())) {
                     UseAction action = stack.getUseAction();
                     if (action == UseAction.EAT || action == UseAction.DRINK) {
                         cir.setReturnValue(TypedActionResult.fail(stack));

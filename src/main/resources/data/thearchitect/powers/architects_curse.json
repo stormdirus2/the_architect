@@ -11,6 +11,10 @@
   "key": {
     "key": "key.origins.secondary_active"
   },
+  "condition": {
+    "type": "origins:sneaking",
+    "inverted": true
+  },
   "name": "Architect's Curse",
-  "description": "Secondary key. Activates on the target you look at. Applies weakness and minor damage. Maximum of 6 per target. Having one is free, subsequent casts cost at least 3 levels. Cost scales with the target's amount. "
+  "description": "Secondary key while not sneaking. Activates on the target you look at. Applies weakness and minor damage. Maximum of 6 per target. Having one is free, subsequent casts cost at least 3 levels. Cost scales with the target's amount. "
 }

@@ -1,0 +1,11 @@
+{
+  "type": "thearchitect:pocket_dimension",
+  "name": "Architect's Pocket",
+  "key": {
+    "key": "key.origins.secondary_active"
+  },
+  "condition": {
+    "type": "origins:sneaking"
+  },
+  "description": "Secondary key while not sneaking. You have access to a 9x3 pocket storage dimension that retains items after death."
+}

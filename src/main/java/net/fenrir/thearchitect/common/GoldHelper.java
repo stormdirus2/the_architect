@@ -1,8 +1,10 @@
 package net.fenrir.thearchitect.common;
 
+import net.fenrir.thearchitect.TheArchitect;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.*;
-import net.minecraft.tag.ItemTags;
+import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
@@ -21,10 +23,10 @@ public class GoldHelper {
                 return true;
             }
         }
-        return item.isIn(ItemTags.PIGLIN_LOVED);
+        return TheArchitect.GOLD.contains(item);
     }
 
-    public static boolean handlingGold(LivingEntity entity) {
+    public static boolean handlingGold(Entity entity) {
         Iterable<ItemStack> iterable = entity.getItemsEquipped();
 
         for (ItemStack itemStack : iterable) {
@@ -39,6 +41,7 @@ public class GoldHelper {
     }
 
     public static boolean goldContact(LivingEntity entity) {
+
         if (handlingGold(entity)) {
             return true;
         }
@@ -49,7 +52,13 @@ public class GoldHelper {
             VoxelShape Shape = blockList.next();
             Vec3d pos = Shape.getBoundingBox().getCenter();
             BlockPos blockPos = new BlockPos(pos.x, pos.y, pos.z);
-            if (entity.world.getBlockState(blockPos).getBlock().asItem().isIn(ItemTags.PIGLIN_LOVED)) {
+            if (TheArchitect.GOLD.contains(entity.world.getBlockState(blockPos).getBlock().asItem())) {
+                return true;
+            }
+        }
+
+        for (Entity otherEntity : entity.world.getOtherEntities(entity, entity.getBoundingBox().expand(0.1), EntityPredicates.VALID_ENTITY)) {
+            if (handlingGold(otherEntity)) {
                 return true;
             }
         }

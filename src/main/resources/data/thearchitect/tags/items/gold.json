@@ -1,0 +1,25 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:piglin_loved",
+    "#minecraft:gold_ores",
+    "minecraft:gold_nugget",
+    "#c:gold_blocks",
+    "#c:gold_dust",
+    "#c:gold_dusts",
+    "#c:gold_ingots",
+    "#c:gold_nuggets",
+    "#c:gold_gravels",
+    "#c:gold_gears",
+    "#c:gold_ores",
+    "#c:gold_plates",
+    "#c:gold_small_dusts",
+    "#c:gold_tiny_dusts",
+    "#c:gold_wires",
+    "#c:golden_apples",
+    "#c:ores/gold",
+    "#c:ingots/gold",
+    "#c:blocks/gold",
+    "#c:asteroid_gold_ores"
+  ]
+}
