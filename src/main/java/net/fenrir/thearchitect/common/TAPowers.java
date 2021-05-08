@@ -23,24 +23,6 @@ public class TAPowers {
     }
 
 
-    public static void initialization() {
-        create(new PowerFactory<>(new Identifier("thearchitect", "pocket_dimension"),
-                new SerializableData()
-                        .add("name", SerializableDataType.STRING, "container.inventory")
-                        .add("drop_on_death", SerializableDataType.BOOLEAN, false)
-                        .add("storage_space", SerializableDataType.INT, 27)
-                        .add("drop_on_death_filter", SerializableDataType.ITEM_CONDITION, null)
-                        .add("key", SerializableDataType.BACKWARDS_COMPATIBLE_KEY, new Active.Key()),
-                data ->
-                        (type, player) -> {
-                            InventoryPower power = new PocketDimension(type, player, data.getString("name"), data.getInt("storage_space"),
-                                    data.getBoolean("drop_on_death"),
-                                    data.isPresent("drop_on_death_filter") ? (ConditionFactory<ItemStack>.Instance) data.get("drop_on_death_filter") :
-                                            itemStack -> true) {
-                            };
-                            power.setKey((Active.Key) data.get("key"));
-                            return power;
-                        }).allowCondition());
-    }
+    public static void initialization() { }
 
 }
