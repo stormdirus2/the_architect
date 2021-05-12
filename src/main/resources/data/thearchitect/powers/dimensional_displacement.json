@@ -1,0 +1,180 @@
+{
+  "type": "origins:multiple",
+  "energy": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 15,
+    "hud_render": {
+      "sprite_location": "thearchitect:textures/gui/resource_bar.png",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "thearchitect:dimensional_displacement_energy",
+        "comparison": "<",
+        "compare_to": 15
+      }
+    }
+  },
+  "onoff": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 1,
+    "hud_render": {
+      "should_render": false
+    }
+  },
+  "toggle": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "thearchitect:dimensional_displacement_onoff",
+        "comparison": "==",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:change_resource",
+            "resource": "thearchitect:dimensional_displacement_onoff",
+            "change": 1
+          },
+          {
+            "type": "thearchitect:create_rift"
+          }
+        ]
+      },
+      "else_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:change_resource",
+            "resource": "thearchitect:dimensional_displacement_onoff",
+            "change": -1
+          },
+          {
+            "type": "thearchitect:create_rift"
+          }
+        ]
+      }
+    },
+    "cooldown": 0,
+    "hud_render": {
+      "should_render": false
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:sneaking",
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "thearchitect:dimensional_displacement_energy",
+          "comparison": ">",
+          "compare_to": 0
+        }
+      ]
+    },
+    "key": {
+      "key": "key.origins.secondary_active"
+    }
+  },
+  "decrement": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:if_else",
+      "condition": {
+        "type": "origins:resource",
+        "resource": "thearchitect:dimensional_displacement_energy",
+        "comparison": "==",
+        "compare_to": 0
+      },
+      "if_action": {
+        "type": "origins:and",
+        "actions": [
+          {
+            "type": "origins:change_resource",
+            "resource": "thearchitect:dimensional_displacement_onoff",
+            "change": -1
+          },
+          {
+            "type": "thearchitect:create_rift"
+          }
+        ]
+      },
+      "else_action": {
+        "type": "origins:change_resource",
+        "resource": "thearchitect:dimensional_displacement_energy",
+        "change": -1
+      }
+    },
+    "interval": 4,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "increment": {
+    "type": "origins:action_over_time",
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "thearchitect:dimensional_displacement_energy",
+      "change": 1
+    },
+    "interval": 20,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 0
+    }
+  },
+  "no_see_others": {
+    "type": "origins:prevent_entity_render",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "no_see_self": {
+    "type": "origins:invisibility",
+    "render_armor": false,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "prevent_damage_self": {
+    "type": "origins:invulnerability",
+    "damage_condition": {
+      "type": "origins:attacker"
+    },
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "shader": {
+    "type": "origins:shader",
+    "shader": "minecraft:shaders/post/pencil.json",
+    "condition": {
+      "type": "origins:resource",
+      "resource": "thearchitect:dimensional_displacement_onoff",
+      "comparison": "==",
+      "compare_to": 1
+    }
+  },
+  "name": "Dimensional Displacement",
+  "description": "Secondary key to toggle while not sneaking. User temporarily becomes ethereal and is unable to observe/influence or be observed/influenced by most things."
+}

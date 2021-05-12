@@ -14,7 +14,6 @@ import net.minecraft.nbt.Tag;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
@@ -28,9 +27,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
+import java.util.Random;
 
 public class ArchitectsFocus extends Item {
     public Logger log = LogManager.getLogger();
+    public Random random = new Random();
 
     public ArchitectsFocus(Settings settings) {
         super(settings);
@@ -76,9 +77,9 @@ public class ArchitectsFocus extends Item {
                                 if (comeWith != null) {
                                     comeWith.teleport(pos.getX(), pos.getY(), pos.getZ());
                                 }
+                                RiftHelper.createRift(world, playerEntity.getBlockPos());
                                 playerEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
-                                world.playSound(null, user.prevX, user.prevY, user.prevZ, SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
-                                realWorld2.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_CONDUIT_DEACTIVATE, user.getSoundCategory(), 1.0F, 1.0F);
+                                RiftHelper.createRift(realWorld2, pos);
                                 playerEntity.getItemCooldownManager().set(stack.getItem(), 200);
                             }
                         }

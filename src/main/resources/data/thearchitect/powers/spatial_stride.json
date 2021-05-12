@@ -77,8 +77,8 @@
   },
   "particles": {
     "type": "origins:particle",
-    "particle": "minecraft:composter",
-    "frequency": 40,
+    "particle": "thearchitect:architects_particle",
+    "frequency": 1,
     "condition": {
       "type": "origins:or",
       "conditions": [

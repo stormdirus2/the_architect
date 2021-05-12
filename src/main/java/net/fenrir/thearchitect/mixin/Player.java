@@ -1,31 +1,82 @@
 package net.fenrir.thearchitect.mixin;
 
-import net.fenrir.thearchitect.common.ArchitectsCurseAccessor;
-import net.fenrir.thearchitect.common.PlayerInterface;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fenrir.thearchitect.common.PowerHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.ShulkerBulletEntity;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.HashSet;
-
-@Mixin(PlayerEntity.class)
-public class Player implements PlayerInterface {
-
-    public HashSet<ShulkerBulletEntity> curses = new HashSet<>();
+@Mixin(value = PlayerEntity.class, priority = 999)
+public class Player extends Living {
 
     @Override
-    public int getCurses() {
-        return (int) curses.stream().filter(curse -> curse.isAlive() && !curse.removed && curse.getOwner() == ((Object) this)).count();
+    public void preventTargeting(CallbackInfoReturnable<Boolean> ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.setReturnValue(false);
+        }
     }
 
     @Override
-    public void addCurse(ShulkerBulletEntity entity) {
-        curses.add(entity);
+    public void stopPushingAwayFrom(Entity entity, CallbackInfo ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = "attack",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void noAttack(Entity target, CallbackInfo ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.cancel();
+        }
+    }
+
+    @Inject(
+            method = "interact",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void noInteract(Entity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            cir.setReturnValue(ActionResult.FAIL);
+        }
+    }
+
+    @Environment(EnvType.CLIENT)
+    @Inject(
+            method = "spawnParticles",
+            at = @At("HEAD"),
+            cancellable = true
+    )
+    public void noParticles(ParticleEffect parameters, CallbackInfo ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.cancel();
+        }
     }
 
     @Override
-    public int getCursesTarget(Entity entity) {
-        return (int) curses.stream().filter(curse -> curse.isAlive() && !curse.removed && curse.getOwner() == ((Object) this) && entity == ((ArchitectsCurseAccessor) curse).getTarget()).count();
+    public void preventSprintParticles(CallbackInfo ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.cancel();
+        }
     }
+
+    @Override
+    public void stopPushingAway(Entity entity, CallbackInfo ci) {
+        if (PowerHelper.isDimensionallyDisplacing((PlayerEntity) (Object) this)) {
+            ci.cancel();
+        }
+    }
+
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "particle/generated",
+  "textures": [
+    "thearchitect:architects_particle"
+  ]
+}

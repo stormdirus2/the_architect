@@ -4,16 +4,16 @@
   "powers": [
     "thearchitect:aurophobia",
     "thearchitect:spatial_stride",
+    "thearchitect:dimensional_displacement",
     "thearchitect:unnatural_composition",
     "thearchitect:architects_pocket",
-    "thearchitect:architects_curse",
     "thearchitect:architects_focus",
     "thearchitect:peritia_transfer",
     "thearchitect:peritia_synthesis",
     "thearchitect:nonflammable",
     "thearchitect:unstable_form",
     "thearchitect:unwithering",
-    "thearchitect:composter_particle"
+    "thearchitect:architects_particle"
   ],
   "order": 2,
   "icon": "thearchitect:architects_focus",

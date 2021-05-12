@@ -1,6 +1,6 @@
 {
   "type": "origins:particle",
-  "particle": "minecraft:composter",
+  "particle": "thearchitect:architects_particle",
   "frequency": 4,
   "hidden": true
 }
