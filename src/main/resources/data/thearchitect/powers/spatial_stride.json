@@ -2,8 +2,8 @@
   "type": "origins:multiple",
   "onoff": {
     "type": "origins:resource",
-    "min": 0,
-    "max": 1,
+    "min": -2147483647,
+    "max": 2147483647,
     "hud_render": {
       "should_render": false
     }
@@ -19,7 +19,7 @@
             "type": "origins:resource",
             "resource": "thearchitect:spatial_stride_onoff",
             "comparison": "==",
-            "compare_to": 0
+            "compare_to": -2147483647
           },
           {
             "type": "origins:on_block"
@@ -27,14 +27,12 @@
         ]
       },
       "if_action": {
-        "type": "origins:change_resource",
-        "resource": "thearchitect:spatial_stride_onoff",
-        "change": 1
+        "type": "thearchitect:set_resource_y_level",
+        "resource": "thearchitect:spatial_stride_onoff"
       },
       "else_action": {
-        "type": "origins:change_resource",
-        "resource": "thearchitect:spatial_stride_onoff",
-        "change": -1
+        "type": "thearchitect:set_min",
+        "resource": "thearchitect:spatial_stride_onoff"
       }
     },
     "cooldown": 0,
@@ -42,63 +40,6 @@
       "should_render": false
     }
   },
-  "apply": {
-    "type": "origins:action_over_time",
-    "entity_action": {
-      "type": "origins:apply_effect",
-      "effect": {
-        "effect": "minecraft:levitation",
-        "duration": 2,
-        "amplifier": -1,
-        "show_particles": false,
-        "show_icon": false
-      }
-    },
-    "interval": 1,
-    "condition": {
-      "type": "origins:or",
-      "conditions": [
-        {
-          "type": "origins:resource",
-          "resource": "thearchitect:spatial_stride_onoff",
-          "comparison": "==",
-          "compare_to": 1
-        },
-        {
-          "type": "origins:equipped_item",
-          "equipment_slot": "mainhand",
-          "item_condition": {
-            "type": "thearchitect:item",
-            "item": "thearchitect:architects_focus"
-          }
-        }
-      ]
-    }
-  },
-  "particles": {
-    "type": "origins:particle",
-    "particle": "thearchitect:architects_particle",
-    "frequency": 1,
-    "condition": {
-      "type": "origins:or",
-      "conditions": [
-        {
-          "type": "origins:resource",
-          "resource": "thearchitect:spatial_stride_onoff",
-          "comparison": "==",
-          "compare_to": 1
-        },
-        {
-          "type": "origins:equipped_item",
-          "equipment_slot": "mainhand",
-          "item_condition": {
-            "type": "thearchitect:item",
-            "item": "thearchitect:architects_focus"
-          }
-        }
-      ]
-    }
-  },
   "name": "Spatial Stride",
-  "description": "Primary key. Only can be first activated on the ground, but can be deactivated whenever. User hovers at the Y-position they activated it at."
+  "description": "Primary key turn on/off. Can only be turned on while on the ground. Marks the Y-level below you - causing it to act as though it were solid ground."
 }

@@ -2,12 +2,13 @@
   "type": "origins:multiple",
   "take_damage": {
     "type": "origins:damage_over_time",
-    "interval": 5,
+    "interval": 4,
     "damage": 2,
     "damage_source": {
       "name": "onFire",
       "fire": true,
-      "bypasses_armor": true
+      "bypasses_armor": true,
+      "unblockable": true
     },
     "condition": {
       "type": "thearchitect:touching_gold"

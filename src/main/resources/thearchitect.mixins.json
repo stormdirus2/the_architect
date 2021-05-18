@@ -4,10 +4,13 @@
   "package": "net.fenrir.thearchitect.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "Anvil",
+    "AttackHud",
     "BaseEntity",
     "ClientInteractionHandler",
     "InteractionHandler",
     "Living",
+    "OtherPlayer",
     "Player",
     "PlayNetworkHandler",
     "Predicates",

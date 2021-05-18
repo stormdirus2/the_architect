@@ -167,7 +167,7 @@
   },
   "shader": {
     "type": "origins:shader",
-    "shader": "minecraft:shaders/post/pencil.json",
+    "shader": "thearchitect:shaders/post/grayscale.json",
     "condition": {
       "type": "origins:resource",
       "resource": "thearchitect:dimensional_displacement_onoff",

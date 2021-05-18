@@ -1,6 +1,4 @@
 {
-  "type": "origins:particle",
-  "particle": "thearchitect:architects_particle",
-  "frequency": 4,
+  "type": "origins:simple",
   "hidden": true
 }

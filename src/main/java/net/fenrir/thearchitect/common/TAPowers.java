@@ -16,6 +16,9 @@ public class TAPowers {
     public static final PowerType<Power> AUROPHOBIA = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "aurophobia"));
     public static final PowerType<Power> UNNATURAL_COMPOSITION = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "unnatural_composition"));
     public static final PowerType<Power> DIMENSIONAL_DISPLACEMENT = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "dimensional_displacement"));
+    public static final PowerType<Power> ARCHITECTS_PARTICLE = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "architects_particle"));
+    public static final PowerType<Power> PERITIA_EFFICIENCY = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "peritia_efficiency"));
+    public static final PowerType<Power> SPATIAL_STRIDE = new PowerTypeReference<>(new Identifier(TheArchitect.MODID, "spatial_stride"));
 
     private static void create(PowerFactory<Power> serializer) {
         Registry.register(ModRegistries.POWER_FACTORY, serializer.getSerializerId(), serializer);

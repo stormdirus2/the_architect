@@ -1,34 +1,12 @@
 {
   "type": "origins:modify_damage_taken",
   "damage_condition": {
-    "type": "origins:or",
-    "conditions": [
-      {
-        "type": "origins:name",
-        "name": "magic"
-      },
-      {
-        "type": "origins:name",
-        "name": "indirectMagic"
-      },
-      {
-        "type": "origins:name",
-        "name": "thorns"
-      },
-      {
-        "type": "origins:name",
-        "name": "fall"
-      },
-      {
-        "type": "origins:name",
-        "name": "flyIntoWall"
-      }
-    ]
+    "type": "the_architect:is_magic"
   },
   "modifier": {
     "operation": "multiply_total",
     "value": 1
   },
   "name": "Unstable Form",
-  "description": "You take 2x more damage from magical and kinetic sources."
+  "description": "You take 2x damage from magical sources."
 }
