@@ -11,5 +11,5 @@
   },
   "cooldown": 0,
   "name": "Fragile Comprehension",
-  "description": "Taking 5 damage or more causes you to lose 5 levels."
+  "description": "Taking 5 or more damage causes you to lose 5 levels."
 }
