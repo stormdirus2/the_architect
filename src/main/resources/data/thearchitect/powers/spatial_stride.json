@@ -41,5 +41,5 @@
     }
   },
   "name": "Spatial Stride",
-  "description": "Primary key turn on/off. Can only be turned on while on the ground. Marks the Y-level below you - causing it to act as though it were solid ground."
+  "description": "Primary key turn on/off. Can only be initially turned on while on the ground. Marks the Y-level below you - causing it to act as though it were solid ground."
 }
