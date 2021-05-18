@@ -126,14 +126,6 @@ public abstract class Player extends Living {
     }
 
     @Override
-    public double modifyFall(double amount) {
-        if (PowerHelper.isSpatialStriding((LivingEntity) (Object) this)) {
-            return 0;
-        }
-        return amount;
-    }
-
-    @Override
     public void noFall(Vec3d movementInput, CallbackInfo ci) {
         if (PowerHelper.isSpatialStriding((LivingEntity) (Object) this)) {
             Vec3d velocity = getVelocity();

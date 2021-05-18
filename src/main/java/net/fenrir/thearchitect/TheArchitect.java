@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 public class TheArchitect implements ModInitializer {
     public static final String MODID = "thearchitect";
-    public static final String MODNAME = "The Architect";
 
     public static final Identifier ARCHITECT_RIFT = new Identifier(MODID, "create_rift");
 

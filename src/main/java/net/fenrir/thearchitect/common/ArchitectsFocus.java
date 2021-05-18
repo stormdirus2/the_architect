@@ -31,7 +31,6 @@ import java.util.Random;
 
 public class ArchitectsFocus extends Item {
     public Logger log = LogManager.getLogger();
-    public Random random = new Random();
 
     public ArchitectsFocus(Settings settings) {
         super(settings);

@@ -53,16 +53,6 @@ public abstract class Living extends BaseEntity {
         //Overridden
     }
 
-    //@ModifyVariable(
-    //    method = "travel",
-    //    at = @At(value = "INVOKE", target = "Lnet/minecraft/world/World;getFluidState(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/fluid/FluidState;"),
-    //    ordinal = 0
-    //)
-    public double modifyFall(double amount) {
-        return amount;
-        //Overridden
-    }
-
     @Inject(
             method = "travel",
             at = @At("TAIL")
