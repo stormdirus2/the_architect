@@ -14,5 +14,5 @@
     "type": "origins:sneaking"
   },
   "name": "Architect's Pocket",
-  "description": "Secondary key while not sneaking. You have access to your enderchest at all times."
+  "description": "Secondary key while sneaking. You have access to your enderchest at all times."
 }
