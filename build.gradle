@@ -77,7 +77,7 @@ dependencies {
     modRuntime "io.github.cottonmc:LibGui:${libgui_version}"
     modRuntime "net.earthcomputer:libstructure:1.5"
     modImplementation "me.zeroeightsix:fiber:${fiber_version}"
-    modImplementation ("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}")
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:${cloth_version}")
     modImplementation "com.github.apace100:origins-fabric:${project.origins_version}"
 }
 
@@ -114,7 +114,7 @@ tasks.withType(JavaCompile).configureEach {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
+        rename { "${it}_${project.archivesBaseName}" }
     }
 }
 

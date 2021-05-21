@@ -13,6 +13,7 @@ import net.minecraft.nbt.NbtOps;
 import net.minecraft.nbt.Tag;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -27,7 +28,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
-import java.util.Random;
 
 public class ArchitectsFocus extends Item {
     public Logger log = LogManager.getLogger();
@@ -45,11 +45,11 @@ public class ArchitectsFocus extends Item {
     }
 
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        if (user instanceof PlayerEntity) {
-            PlayerEntity playerEntity = (PlayerEntity) user;
+        if (user instanceof ServerPlayerEntity) {
+            ServerPlayerEntity playerEntity = (ServerPlayerEntity) user;
             if (TAPowers.ARCHITECTS_FOCUS.isActive(playerEntity)) {
                 int i = this.getMaxUseTime(stack) - remainingUseTicks;
-                if (i >= 22 && !world.isClient) {
+                if (i >= 22) {
                     CompoundTag compoundTag = stack.getOrCreateSubTag(TheArchitect.MODID);
                     Optional<RegistryKey<World>> world2 = World.CODEC.parse(NbtOps.INSTANCE, compoundTag.get("warp_world")).result();
                     if (compoundTag.contains("warp_pos") && world2.isPresent()) {
@@ -67,17 +67,25 @@ public class ArchitectsFocus extends Item {
                                 if (result != null && result.getEntity() instanceof LivingEntity) {
                                     comeWith = result.getEntity();
                                 }
-                                if (realWorld2 != world) {
-                                    if (comeWith != null) {
-                                        comeWith.moveToWorld(realWorld2);
-                                    }
-                                    playerEntity.moveToWorld(realWorld2);
-                                }
                                 if (comeWith != null) {
-                                    comeWith.teleport(pos.getX(), pos.getY(), pos.getZ());
+                                    if (comeWith instanceof ServerPlayerEntity) {
+                                        ServerPlayerEntity comeWithPlayer = (ServerPlayerEntity) comeWith;
+                                        comeWithPlayer.teleport(realWorld2, pos.getX(), pos.getY(), pos.getZ(), comeWithPlayer.yaw, comeWithPlayer.pitch);
+                                        comeWithPlayer.onTeleportationDone();
+                                        comeWithPlayer.addExperience(0);
+                                    } else {
+                                        comeWith.setWorld(realWorld2);
+                                        comeWith.teleport(pos.getX(), pos.getY(), pos.getZ());
+                                        comeWith.resetPosition(pos.getX(), pos.getY(), pos.getZ());
+                                        comeWith.updateNeeded = true;
+                                        comeWith.updatePosition(pos.getX(), pos.getY(), pos.getZ());
+                                        realWorld2.onDimensionChanged(comeWith);
+                                    }
                                 }
                                 RiftHelper.createRift(world, playerEntity.getBlockPos());
-                                playerEntity.teleport(pos.getX(), pos.getY(), pos.getZ());
+                                playerEntity.teleport(realWorld2, pos.getX(), pos.getY(), pos.getZ(), playerEntity.yaw, playerEntity.pitch);
+                                playerEntity.onTeleportationDone();
+                                playerEntity.addExperience(0);
                                 RiftHelper.createRift(realWorld2, pos);
                                 playerEntity.getItemCooldownManager().set(stack.getItem(), 200);
                             }

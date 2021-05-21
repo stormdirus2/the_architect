@@ -27,15 +27,12 @@ public class TheArchitect implements ModInitializer {
 
     public static final Tag<Item> GOLD = TagRegistry.item(new Identifier(MODID, "gold"));
 
-    public TheArchitect() {
+    @Override
+    public void onInitialize() {
         TAConditions.initialization();
         TAPowers.initialization();
         TAItemConditions.initialization();
         TAEntityActions.initialization();
-    }
-
-    @Override
-    public void onInitialize() {
         Registry.register(Registry.ITEM, new Identifier(MODID, "architects_focus"), ARCHITECTS_FOCUS);
         Logger.getLogger(MODID).log(Level.INFO, "[The Architect] Initialized");
     }
