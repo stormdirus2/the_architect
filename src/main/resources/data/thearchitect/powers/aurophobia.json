@@ -20,6 +20,23 @@
       "type": "thearchitect:touching_gold"
     }
   },
+  "no_eat": {
+    "type": "origins:prevent_item_use",
+    "item_condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:food"
+        },
+        {
+          "type": "origins:ingredient",
+          "ingredient": {
+            "tag": "thearchitect:gold"
+          }
+        }
+      ]
+    }
+  },
   "name": "Aurophobia",
   "description": "You take massive damage over time while in contact with gold. You cannot consume gold-related items."
 }

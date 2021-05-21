@@ -20,7 +20,7 @@ public class AttackHud {
             )
     )
     public boolean isAlive(Entity entity) {
-        if (PowerHelper.isDimensionallyDisplacing(MinecraftClient.getInstance().player)) {
+        if (PowerHelper.isDimensionallyDisplacing(entity) || PowerHelper.isDimensionallyDisplacing(MinecraftClient.getInstance().player)) {
             return false;
         }
         return entity.isAlive();

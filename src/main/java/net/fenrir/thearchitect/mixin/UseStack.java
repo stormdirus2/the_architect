@@ -1,15 +1,12 @@
 package net.fenrir.thearchitect.mixin;
 
-import net.fenrir.thearchitect.TheArchitect;
 import net.fenrir.thearchitect.common.PowerHelper;
-import net.fenrir.thearchitect.common.TAPowers;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -30,14 +27,6 @@ public class UseStack {
             if (PowerHelper.isDimensionallyDisplacing(user)) {
                 cir.setReturnValue(TypedActionResult.fail(stack));
             }
-            if (TAPowers.AUROPHOBIA.isActive(user)) {
-                if (TheArchitect.GOLD.contains(stack.getItem())) {
-                    UseAction action = stack.getUseAction();
-                    if (action == UseAction.EAT || action == UseAction.DRINK) {
-                        cir.setReturnValue(TypedActionResult.fail(stack));
-                    }
-                }
-            }
         }
     }
 
@@ -54,11 +43,8 @@ public class UseStack {
 
     @Inject(method = "useOnEntity", at = @At("HEAD"), cancellable = true)
     public void preventUsage3(PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-        ItemStack stack = user.getStackInHand(hand);
-        if (stack != null) {
-            if (PowerHelper.isDimensionallyDisplacing(user)) {
-                cir.setReturnValue(ActionResult.FAIL);
-            }
+        if (PowerHelper.isDimensionallyDisplacing(user) || PowerHelper.isDimensionallyDisplacing(entity)) {
+            cir.setReturnValue(ActionResult.FAIL);
         }
     }
 

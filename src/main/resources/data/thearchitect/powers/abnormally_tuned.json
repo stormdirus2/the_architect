@@ -1,0 +1,22 @@
+{
+  "type": "origins:prevent_item_use",
+  "item_condition": {
+    "type": "origins:or",
+    "conditions": [
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "item": "minecraft:ender_pearl"
+        }
+      },
+      {
+        "type": "origins:ingredient",
+        "ingredient": {
+          "item": "minecraft:chorus_fruit"
+        }
+      }
+    ]
+  },
+  "name": "Abnormally Tuned",
+  "description": "You cannot use enderpearls or chorus fruit."
+}
